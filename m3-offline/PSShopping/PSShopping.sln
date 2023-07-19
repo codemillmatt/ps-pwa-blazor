@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSShopping", "PSShopping\PSShopping.csproj", "{ABCA6E15-BAD6-42FC-AD82-BD3A197C6B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSShopping.API", "PSShopping.API\PSShopping.API.csproj", "{DD6659CD-16F1-4FE4-AEEF-EA3334D1A73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSShopping.API", "PSShopping.API\PSShopping.API.csproj", "{DD6659CD-16F1-4FE4-AEEF-EA3334D1A73D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSShopping.Shared", "PSShopping.Shared\PSShopping.Shared.csproj", "{CE537E51-556C-4411-A875-F644273A8511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSShopping.Shared", "PSShopping.Shared\PSShopping.Shared.csproj", "{CE537E51-556C-4411-A875-F644273A8511}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

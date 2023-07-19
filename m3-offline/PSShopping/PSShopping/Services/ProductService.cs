@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 
 namespace PSShopping.Services
 {
-    public class ProductService : IProductService
+    public class ProductService
     {
         HttpClient client;
         // constructor with an injected http client
