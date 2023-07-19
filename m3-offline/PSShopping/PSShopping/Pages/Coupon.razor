@@ -2,8 +2,13 @@
 
 <h3>Coupon</h3>
 
-This should always be server rendered
+This should always be server rendered.
+
+<button @onclick="() => ClipCount++">Clip</button>
+
+Coupon clipped @ClipCount times.
 
 @code {
+   public static int ClipCount { get; set; }
 
 }

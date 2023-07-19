@@ -19,6 +19,7 @@ async function onInstall(event) {
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
         .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
+
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
 }
 
@@ -45,6 +46,12 @@ async function onFetch(event) {
         const request = shouldServeIndexHtml ? 'index.html' : event.request;
         const cache = await caches.open(cacheName);
         cachedResponse = await cache.match(request);
+
+        if (cachedResponse === undefined) {
+            const fetchResponse = await fetch(event.request.url);
+            cache.put(event.request.url, fetchResponse.clone());
+            return fetchResponse;
+        }
     }
 
     return cachedResponse || fetch(event.request);
