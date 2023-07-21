@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using Org.BouncyCastle.Asn1.X509;
 using PSShopping.Shared;
 using System.Security.Claims;
 using System.Text.Json;
+using WebPush;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,5 +70,46 @@ app.MapGet("/notifications/get", (IDistributedCache cache) =>
     else
         return Results.NotFound();
 });
+
+app.MapPost("/newcouponalert", async (IDistributedCache cache, IConfiguration config) =>
+{
+    string privateKey = config["Vapid:PrivateKey"];
+    string publicKey = config["Vapid:PublicKey"];
+    string subject = config["Vapid:Subject"];
+
+    // grab the subscription from the cache
+    var json = cache.GetString("subscription");
+    if (!string.IsNullOrEmpty(json))
+    {
+        var notificationSubscription = JsonSerializer.Deserialize<NotificationSubscription>(json);
+
+        await SendNotificationAsync(notificationSubscription, "New coupon available!", publicKey, privateKey, subject);
+
+        return Results.Ok();
+    }
+    else
+        return Results.NotFound();
+});
+
+static async Task SendNotificationAsync(NotificationSubscription subscription, string message, string publicKey, string privateKey, string subject)
+{ 
+    var pushSubscription = new PushSubscription(subscription.Url, subscription.P256dh, subscription.Auth);
+    var vapidDetails = new VapidDetails(subject, publicKey, privateKey);
+    var webPushClient = new WebPushClient();
+    try
+    {
+        var payload = JsonSerializer.Serialize(new
+        {
+            message,
+            url = "coupon"
+        });
+
+        await webPushClient.SendNotificationAsync(pushSubscription, payload, vapidDetails);
+    }
+    catch (Exception ex)
+    {
+        Console.Error.WriteLine("Error sending push notification: " + ex.Message);
+    }
+}
 
 app.Run();

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PSShopping;
 using PSShopping.Services;
 
-//string shoppingAPIBaseAddress = "https://pwashoppingapi.azurewebsites.net";
-string shoppingAPIBaseAddress = "https://localhost:7294";
+string shoppingAPIBaseAddress = "https://pwashoppingapi.azurewebsites.net";
+//string shoppingAPIBaseAddress = "https://localhost:7294";
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
