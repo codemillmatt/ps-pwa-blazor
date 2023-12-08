@@ -1,0 +1,24 @@
+﻿@page "/coupon"
+
+@using PSShopping.Shared
+@using PSShopping.Services
+
+@inject IJSRuntime JSRuntime
+@inject CouponService couponService
+
+<h3>Coupons</h3>
+
+<button class="btn btn-primary" @onclick="RequestNotificationSubscriptionAsync">Subscribe to coupon notifications!</button>
+
+@code {
+    async Task RequestNotificationSubscriptionAsync()
+    {
+        var subscription = await JSRuntime.InvokeAsync<NotificationSubscription>("blazorPushNotifications.requestSubscription");
+
+        if (subscription != null)
+        {
+            await couponService.SubscribeToNotifications(subscription);
+        }
+    }
+
+}

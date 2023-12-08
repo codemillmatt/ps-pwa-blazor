@@ -1,0 +1,30 @@
+﻿@page "/products"
+@using PSShopping.Services;
+
+@inject ProductService service;
+
+<PageTitle>Product Catalogs</PageTitle>
+
+<h1>Our Products</h1>
+
+<!-- loop through all the products and display name in an html list -->
+<ul>
+    @foreach (var product in Products)
+    {
+        <li>@product.ProductName</li>
+    }
+</ul>
+
+@code {
+    // Property to hold the list of products
+    List<Product> Products { get; set; } = new List<Product>();
+
+    // function to run first time page loads that calls out to a web api
+    protected override async Task OnInitializedAsync()
+    {
+        Products.Clear();
+
+        // call out to the web api
+        Products.AddRange(await service.GetProducts());
+    }
+}
