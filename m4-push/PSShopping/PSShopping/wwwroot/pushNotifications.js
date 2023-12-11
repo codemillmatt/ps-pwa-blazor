@@ -1,6 +1,7 @@
 ﻿(function () {
     // Note: Replace with your own key pair before deploying
-    const applicationServerPublicKey = 'BGA7gXhlJXKK2zyVg46pxpi10Rp78kfeoz9oW-rq8lrOawTdWGFvqM14wKpYh3fKxzALCeeLlpTuSmmgf9L6GHY';
+    // go to https://tools.reactpwa.com/vapid to generate a new key pair
+    const applicationServerPublicKey = '';
 
     window.blazorPushNotifications = {
         requestSubscription: async () => {
