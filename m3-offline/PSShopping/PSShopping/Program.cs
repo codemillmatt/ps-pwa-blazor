@@ -11,7 +11,9 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddSingleton<ProductService>(ps => new ProductService(new HttpClient() { 
     //BaseAddress = new Uri("https://localhost:7294") 
-    BaseAddress = new Uri("https://pwashoppingapi.azurewebsites.net")
+    
+    // enter the address of the server that has the API installed on it
+    //BaseAddress = new Uri("https://EXTERNAL_SERVER_ADDRESS")
 }));
 
 await builder.Build().RunAsync();
