@@ -1,6 +1,6 @@
-# Building a PWA with ASP.NET Core 6 Blazor
+# Building a PWA with ASP.NET Core Blazor
 
-Hello! And welcome to the source code repository for the Building a PWA with ASP.NET Core 6 Blazor Pluralsight course.
+Hello! And welcome to the source code repository for the Building a PWA with ASP.NET Core Blazor Pluralsight course.
 
 Here you'll find finished projects for each module in the course. Check out the module directory for a bit more info on the project and what to look for when browsing the code.
 
